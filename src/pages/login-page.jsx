@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { showLoader, hideLoader } from "../redux/actions/loader-data";
 import { updateUserData } from "../redux/actions/user-data";
-import "../assets/login.css";
+import "../assets/scss/login.scss";
 import { login } from "../http-calls";
 import { showToast } from "../helper-methods";
 
