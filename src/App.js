@@ -1,13 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./redux/store";
 import { Provider } from "react-redux";
-import HomePage from './pages/home-page';
-import ProtectedRoute from './components/protected-routes';
-import LoginPage from './pages/login-page';
 import FullPageLoader from "./containers/full-page-loader";
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from "react-toasts";
+import "./assets/scss/bootstrap/bootstrap.min.css";
+import LandingPage from './pages/landing-page/landing-page';
+import ResultsPage from "./pages/results-page/results-page";
+import LogViewerPage from './pages/log-viewer-page/log-viewer-page';
+import EditorPage from "./pages/editor-page/editor-page";
 
 function App() {
   return (
@@ -18,8 +20,12 @@ function App() {
             <FullPageLoader></FullPageLoader>
             <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.BOTTOM_RIGHT} />
             <Switch>
-              <Route exact path="/login" component={LoginPage} />
-              <ProtectedRoute exact path="*" component={HomePage} redirectRoute="/login" /> */}
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/results" component={ResultsPage} />
+              <Route exact path="/log" component={LogViewerPage} />
+              <Route exact path="/editor" component={EditorPage} />
+              <Route exact path="*" render={() => <Redirect to="/" />} />
+              {/* <ProtectedRoute exact path="*" component={HomePage} redirectRoute="/login" /> */} */}
             </Switch>
           </div>
         </Router>
